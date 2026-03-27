@@ -11,18 +11,18 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Drumfish.DrumfishCode.Cards.Colorless;
+namespace Drumfish.DrumfishCode.Cards.Common;
+
 
 [Pool(typeof(TokenCardPool))]
-public sealed class FirewoodFeather() : CustomCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class ScaldingFeather() : CustomCardModel(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<ThornsPower>()];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new FeedfireVar(1),
+        new PowerVar<ThornsPower>(3m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -35,6 +35,7 @@ public sealed class FirewoodFeather() : CustomCardModel(0, CardType.Skill, CardR
 
     protected override void OnUpgrade()
     {
+        DynamicVars["ThornsPower"].UpgradeValueBy(1m);
         DynamicVars[FeedfireVar.Key].UpgradeValueBy(1m);
     }
 }

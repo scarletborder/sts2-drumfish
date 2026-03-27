@@ -10,8 +10,10 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Drumfish.DrumfishCode.Cards.Basic;
 
+[Pool(typeof(DrumfishCardPool))]
 public class DefenseDrumfish() : DrumfishCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
+    public override bool GainsBlock => true;
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, ValueProp.Move)];
 
@@ -24,6 +26,6 @@ public class DefenseDrumfish() : DrumfishCard(1, CardType.Skill, CardRarity.Basi
     {
         DynamicVars["Block"].UpgradeValueBy(3m);
     }
-    
+
     public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 }

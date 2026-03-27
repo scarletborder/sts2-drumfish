@@ -100,6 +100,8 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="DrumfishCode\Cards\Rare\" />
+        <Folder Include="DrumfishCode\Patches\Features\" />
         <Folder Include="Drumfish\images\powers\big\"/>
         <Folder Include="Drumfish\images\relics\big\"/>
     </ItemGroup>

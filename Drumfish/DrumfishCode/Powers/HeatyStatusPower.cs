@@ -26,7 +26,7 @@ public sealed class HeatyStatusPower : DrumfishPower
         return new Data();
     }
 
-    public override PowerType Type => PowerType.Debuff;
+    public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
     /// <summary>

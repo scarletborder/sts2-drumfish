@@ -132,7 +132,7 @@ public abstract class TemporaryThornsPower : DrumfishPower, ITemporaryPower
 
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
-        if (side == base.Owner.Side)
+        if (side != CombatSide.None && side != base.Owner.Side)
         {
             Flash();
             await PowerCmd.Remove(this);

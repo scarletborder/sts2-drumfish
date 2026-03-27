@@ -13,8 +13,9 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Drumfish.DrumfishCode.Cards.Colorless;
 
+ 
 [Pool(typeof(TokenCardPool))]
-public sealed class FirewoodFeather() : CustomCardModel(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class Wheat() : CustomCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<ThornsPower>()];
 
@@ -22,15 +23,12 @@ public sealed class FirewoodFeather() : CustomCardModel(0, CardType.Skill, CardR
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new FeedfireVar(1),
+        new FeedfireVar(2),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await FeedfireCmd.Execute(choiceContext, cardPlay.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
-
-        await PowerCmd.Apply<FirewoodFeatherPower>(Owner.Creature, DynamicVars["ThornsPower"].IntValue, Owner.Creature,
-            this);
     }
 
     protected override void OnUpgrade()

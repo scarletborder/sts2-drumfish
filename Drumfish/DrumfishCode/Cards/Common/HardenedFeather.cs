@@ -1,47 +1,46 @@
-﻿using BaseLib.Abstracts;
+﻿using MegaCrit.Sts2.Core.Models.Powers;
+
+namespace Drumfish.DrumfishCode.Cards.Common;
+
+using BaseLib.Cards.Variables;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Drumfish.DrumfishCode.Character;
 using Drumfish.DrumfishCode.Commands;
 using Drumfish.DrumfishCode.Extensions;
 using Drumfish.DrumfishCode.Powers;
-using Drumfish.DrumfishCode.Variables;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Drumfish.DrumfishCode.Cards.Basic;
 
 [Pool(typeof(DrumfishCardPool))]
-public class Anneal() : DrumfishCard(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public class HardenedFeather() : DrumfishCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     public override bool GainsBlock => true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new FeedfireVar(1),
-        new BlockVar(4, ValueProp.Move)
+        new BlockVar(2, ValueProp.Move)
     ];
+
+    public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
-        await FeedfireCmd.Execute(choiceContext, play.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        var thornsPower = Owner.Creature.GetPower<ThornsPower>();
+        var thornsAmount = thornsPower?.Amount ?? 0m;
+
+        var baseBlock = DynamicVars["Block"].IntValue;
+        var totalBlock = baseBlock + (int)thornsAmount;
 
         await CommonActions.CardBlock(this, play);
-        var ownerCreature = play.Card.Owner.Creature;
-        var isInHeat = ownerCreature.GetPower<HeatyStatusPower>();
-        if (isInHeat != null)
-        {
-            await HeatyCmd.Exit(choiceContext, Owner);
-        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[FeedfireVar.Key].UpgradeValueBy(1m);
+        DynamicVars["Block"].UpgradeValueBy(3m); // 2 -> 5
     }
-
-    // public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 }

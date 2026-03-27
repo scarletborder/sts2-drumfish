@@ -1,6 +1,7 @@
 ﻿using BaseLib.Cards.Variables;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using Drumfish.DrumfishCode.Character;
 using Drumfish.DrumfishCode.Extensions;
 using Drumfish.DrumfishCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,6 +12,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Drumfish.DrumfishCode.Cards.Basic;
 
+
+[Pool(typeof(DrumfishCardPool))]
 public class StrikeDrumfish() : DrumfishCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];

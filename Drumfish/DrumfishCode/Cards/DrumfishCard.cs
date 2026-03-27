@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using Drumfish.DrumfishCode.Character;
 using Drumfish.DrumfishCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Drumfish.DrumfishCode.Cards;
 
@@ -25,6 +26,23 @@ public abstract class DrumfishCard(int cost, CardType type, CardRarity rarity, T
     //Uses card_portraits/card_name.png as image path. These should be smaller images.
     public override string PortraitPath => DefaultPortraitPath;
     public override string BetaPortraitPath => DefaultPortraitPath;
+
+    public virtual Task OnFeedfire(Player player, decimal amount)
+    {
+        return Task.CompletedTask;
+    }
+
+    // Called when the player enters Heaty (上火)
+    public virtual Task OnHeatyEnter(Player player)
+    {
+        return Task.CompletedTask;
+    }
+
+    // Called when the player exits Heaty (上火)
+    public virtual Task OnHeatyExit(Player player)
+    {
+        return Task.CompletedTask;
+    }
 }
 
     // //Image size:
