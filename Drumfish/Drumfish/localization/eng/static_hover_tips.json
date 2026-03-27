@@ -1,0 +1,6 @@
+{
+  "DRUMFISH-FEEDFIRE.title" : "加薪",
+  "DRUMFISH-FEEDFIRE.description": "在 [gold]上火[/gold]状态打出这张牌时，获得[blue]{Feedfire}[/blue]点能量. 否则抽1张牌",
+  "heatystatus.title": "上火",
+  "heatystatus.description": "打出的牌会被耗尽"
+}

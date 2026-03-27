@@ -1,0 +1,14 @@
+{
+  "DRUMFISH-STRIKE_DRUMFISH.description": "造成 {Damage:diff()} 点伤害.",
+  "DRUMFISH-STRIKE_DRUMFISH.title": "打击",
+  "DRUMFISH-DEFENSE_DRUMFISH.description": "获得 {Block:diff()} 点[gold]格挡[/gold].",
+  "DRUMFISH-DEFENSE_DRUMFISH.title": "防御",
+  "DRUMFISH-FLAME_STRIKE.description": "造成 {Damage:diff()} 点伤害. 进入 [gold]上火[/gold]",
+  "DRUMFISH-FLAME_STRIKE.title": "烈焰打击",
+  "DRUMFISH-ANNEAL.description": "获得{Block:diff()} 点格挡。退出[gold]上火[/gold]。\n[gold]加薪[/gold]{Feedfire:diff()}",
+  "DRUMFISH-ANNEAL.title": "退火",
+  "DRUMFISH-MATCH.description": "[gold]加薪[/gold]{Feedfire:diff()}",
+  "DRUMFISH-MATCH.title": "火柴",  
+  "DRUMFISH-FIREWOOD_FEATHER.description": "获得{ThornsPower:diff()}点[gold]临时荆棘[/gold]",
+  "DRUMFISH-FIREWOOD_FEATHER.title": "薪生之羽"
+}
