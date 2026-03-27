@@ -25,13 +25,15 @@ public sealed class WheatWall() : CustomCardModel(0, CardType.Skill, CardRarity.
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new FeedfireVar(2),
+        new FeedfireVar(1),
         new BlockVar(10m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await FeedfireCmd.Execute(choiceContext, cardPlay.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        if (cardPlay.Card.CombatState != null)
+            await FeedfireCmd.Execute(choiceContext, cardPlay.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue,
+                cardPlay.Card.CombatState);
 
         await CommonActions.CardBlock(this, cardPlay);
     }

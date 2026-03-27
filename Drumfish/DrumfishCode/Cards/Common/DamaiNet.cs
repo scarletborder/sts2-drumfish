@@ -35,7 +35,9 @@ public class DamaiNet() : DrumfishCard(2, CardType.Attack, CardRarity.Common, Ta
         await CommonActions.CardAttack(play.Card, play,DynamicVars.Damage.IntValue).Execute(choiceContext);
 
         // 触发 加薪
-        await FeedfireCmd.Execute(choiceContext, play.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        if (play.Card.CombatState != null)
+            await FeedfireCmd.Execute(choiceContext, play.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue,
+                play.Card.CombatState);
     }
 
     protected override void OnUpgrade()

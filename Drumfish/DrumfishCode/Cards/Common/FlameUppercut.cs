@@ -40,7 +40,9 @@ public class FlameUppercut() : DrumfishCard(3, CardType.Attack, CardRarity.Commo
         base.Owner.Creature,
         this);
 
-    await FeedfireCmd.Execute(choiceContext, play.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
+    if (play.Card.CombatState != null)
+      await FeedfireCmd.Execute(choiceContext, play.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue,
+        play.Card.CombatState);
   }
 
   protected override void OnUpgrade()

@@ -40,7 +40,9 @@ public class ForcedCombustion() : DrumfishCard(0, CardType.Skill, CardRarity.Com
         }
 
         await CardPileCmd.AddGeneratedCardsToCombat(burnCards, PileType.Hand, true);
-        await FeedfireCmd.Execute(choiceContext, Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        if (cardPlay.Card.CombatState != null)
+            await FeedfireCmd.Execute(choiceContext, Owner, DynamicVars[FeedfireVar.Key].IntValue,
+                cardPlay.Card.CombatState);
     }
 
     protected override void OnUpgrade()

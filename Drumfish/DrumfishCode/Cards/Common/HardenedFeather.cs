@@ -23,7 +23,7 @@ public class HardenedFeather() : DrumfishCard(0, CardType.Skill, CardRarity.Comm
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(2, ValueProp.Move)
+        new BlockVar(3m, ValueProp.Move)
     ];
 
     public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
@@ -33,14 +33,15 @@ public class HardenedFeather() : DrumfishCard(0, CardType.Skill, CardRarity.Comm
         var thornsPower = Owner.Creature.GetPower<ThornsPower>();
         var thornsAmount = thornsPower?.Amount ?? 0m;
 
-        var baseBlock = DynamicVars["Block"].IntValue;
-        var totalBlock = baseBlock + (int)thornsAmount;
-
-        await CommonActions.CardBlock(this, play);
+        int blockGains = thornsAmount > 0 ? 2 : 1;
+        for (int i = 0; i < blockGains; i++)
+        {
+            await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Block"].UpgradeValueBy(3m); // 2 -> 5
+        DynamicVars["Block"].UpgradeValueBy(2m);
     }
 }

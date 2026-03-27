@@ -23,11 +23,14 @@ public sealed class FirewoodFeather() : CustomCardModel(0, CardType.Skill, CardR
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new FeedfireVar(1),
+        new PowerVar<ThornsPower>(1m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await FeedfireCmd.Execute(choiceContext, cardPlay.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        if (cardPlay.Card.CombatState != null)
+            await FeedfireCmd.Execute(choiceContext, cardPlay.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue,
+                cardPlay.Card.CombatState);
 
         await PowerCmd.Apply<FirewoodFeatherPower>(Owner.Creature, DynamicVars["ThornsPower"].IntValue, Owner.Creature,
             this);
@@ -35,6 +38,6 @@ public sealed class FirewoodFeather() : CustomCardModel(0, CardType.Skill, CardR
 
     protected override void OnUpgrade()
     {
-        DynamicVars[FeedfireVar.Key].UpgradeValueBy(1m);
+      DynamicVars["ThornsPower"].UpgradeValueBy(1m);
     }
 }

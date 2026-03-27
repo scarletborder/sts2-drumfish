@@ -27,7 +27,9 @@ public sealed class ScaldingFeather() : CustomCardModel(1, CardType.Skill, CardR
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await FeedfireCmd.Execute(choiceContext, cardPlay.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        if (cardPlay.Card.CombatState != null)
+            await FeedfireCmd.Execute(choiceContext, cardPlay.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue,
+                cardPlay.Card.CombatState);
 
         await PowerCmd.Apply<FirewoodFeatherPower>(Owner.Creature, DynamicVars["ThornsPower"].IntValue, Owner.Creature,
             this);

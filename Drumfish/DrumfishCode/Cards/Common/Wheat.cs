@@ -28,7 +28,9 @@ public sealed class Wheat() : CustomCardModel(0, CardType.Skill, CardRarity.Toke
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await FeedfireCmd.Execute(choiceContext, cardPlay.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        if (cardPlay.Card.CombatState != null)
+            await FeedfireCmd.Execute(choiceContext, cardPlay.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue,
+                cardPlay.Card.CombatState);
     }
 
     protected override void OnUpgrade()

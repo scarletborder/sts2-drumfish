@@ -13,5 +13,8 @@
   "DRUMFISH-GUARD_POWER.title": "GuardPower",
   "DRUMFISH-VINE_ARMOR_POWER.description": "本回合免疫一定数额的伤害",
   "DRUMFISH-VINE_ARMOR_POWER.smartDescription": "本回合免疫[blue]{Amount}[/blue]以下的伤害",
-  "DRUMFISH-VINE_ARMOR_POWER.title": "VineArmorPower"
+  "DRUMFISH-VINE_ARMOR_POWER.title": "VineArmorPower",
+  "DRUMFISH-PLANT_TREES_POWER.description": "每打出1张[gold]攻击牌[/gold]，[gold]加薪[/gold]{Amount}。",
+  "DRUMFISH-PLANT_TREES_POWER.smartDescription": "每打出1张[gold]攻击牌[/gold]，[gold]加薪[/gold]{Amount}。",
+  "DRUMFISH-PLANT_TREES_POWER.title": "前人栽树"
 }

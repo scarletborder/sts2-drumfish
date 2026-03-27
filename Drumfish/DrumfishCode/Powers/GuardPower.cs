@@ -23,7 +23,7 @@ public sealed class GuardPower : DrumfishPower
     // 用于记录当次受伤是否触发了伤害翻倍，以便播放特效
     private bool _triggeredThisHit = false;
 
-    public override decimal ModifyHpLostAfterOsty(Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+    public override decimal ModifyHpLostBeforeOsty(Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
         if (!CombatManager.Instance.IsInProgress)
         {

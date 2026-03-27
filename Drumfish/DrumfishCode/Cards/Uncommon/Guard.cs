@@ -26,7 +26,7 @@ public class Guard() : DrumfishCard(2, CardType.Skill, CardRarity.Uncommon, Targ
             IEnumerable<Creature> enumerable = combatState.PlayerCreatures.Where((Creature c) =>
             {
                 // 自己不受效果
-                if (c.Equals(Owner.Creature)) return false;
+                if (c.Player == base.Owner) return false;
                 return c?.IsAlive ?? false;
             }).ToList();
 
@@ -37,5 +37,10 @@ public class Guard() : DrumfishCard(2, CardType.Skill, CardRarity.Uncommon, Targ
             
             await PowerCmd.Apply<GuardPower>(Owner.Creature, 1, Owner.Creature, this);
         }
+    }
+
+    protected override void OnUpgrade()
+    {
+        EnergyCost.UpgradeBy(-1);
     }
 }

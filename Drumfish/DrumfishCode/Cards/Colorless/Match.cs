@@ -26,7 +26,9 @@ public sealed class Match() : CustomCardModel(1, CardType.Skill, CardRarity.Toke
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await FeedfireCmd.Execute(choiceContext, Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        if (cardPlay.Card.CombatState != null)
+            await FeedfireCmd.Execute(choiceContext, Owner, DynamicVars[FeedfireVar.Key].IntValue,
+                cardPlay.Card.CombatState);
         await HeatyCmd.Enter(choiceContext, Owner, cardPlay.Card);
     }
 

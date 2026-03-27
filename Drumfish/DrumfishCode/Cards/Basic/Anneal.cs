@@ -27,7 +27,9 @@ public class Anneal() : DrumfishCard(0, CardType.Skill, CardRarity.Basic, Target
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
-        await FeedfireCmd.Execute(choiceContext, play.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        if (play.Card.CombatState != null)
+            await FeedfireCmd.Execute(choiceContext, play.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue,
+                play.Card.CombatState);
 
         await CommonActions.CardBlock(this, play);
         var ownerCreature = play.Card.Owner.Creature;

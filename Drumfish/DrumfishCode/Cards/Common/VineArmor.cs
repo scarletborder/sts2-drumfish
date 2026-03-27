@@ -37,7 +37,9 @@ public class VineArmor() : DrumfishCard(2, CardType.Skill, CardRarity.Common, Ta
             play.Card);
 
 
-        await FeedfireCmd.Execute(choiceContext, play.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue);
+        if (play.Card.CombatState != null)
+            await FeedfireCmd.Execute(choiceContext, play.Card.Owner, DynamicVars[FeedfireVar.Key].IntValue,
+                play.Card.CombatState);
 
         await CommonActions.CardBlock(this, play);
     }

@@ -21,7 +21,7 @@ public class ColdWaterFlush() : DrumfishCard(1, CardType.Attack, CardRarity.Comm
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<HeatyStatusPower>()];
 
-    public override string PortraitPath => $"${Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
+    public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
