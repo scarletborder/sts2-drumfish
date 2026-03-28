@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Drumfish.DrumfishCode.Cards.Common;
 
-
 [Pool(typeof(DrumfishCardPool))]
 public class PullNutOutofFire() : DrumfishCard(1, CardType.Attack, CardRarity.Common, TargetType.Self)
 {
@@ -22,9 +21,30 @@ public class PullNutOutofFire() : DrumfishCard(1, CardType.Attack, CardRarity.Co
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, base.DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, base.DynamicVars.HpLoss.BaseValue,
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
 
-        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        var exhaustPile = PileType.Exhaust.GetPile(Owner);
+        var cards = exhaustPile.Cards;
+    
+        // 获取动态变量中定义的数量，并确保不超过当前堆中的总数
+        int countToRetrieve = (int)base.DynamicVars.Cards.BaseValue;
+        int actualCount = Math.Min(countToRetrieve, cards.Count);
+
+        if (actualCount <= 0)
+        {
+            return;
+        }
+        
+        for (int i = 0; i < actualCount; i++)
+        {
+            // 每次都取最后一张 (因为取走一张后，原本的倒数第二变成了倒数第一)
+            var cardInTop = cards[^1]; 
+        
+            cardInTop.RemoveFromCurrentPile();
+            await CardPileCmd.Add(cardInTop, PileType.Hand);
+            await Cmd.Wait(0.1f);
+        }
     }
 
     protected override void OnUpgrade()

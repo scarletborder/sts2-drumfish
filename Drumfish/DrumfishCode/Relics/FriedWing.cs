@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 
 
@@ -29,21 +30,36 @@ public class FriedWing : DrumfishRelic
     public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
     {
         var friedWing = this;
-        if (side != friedWing.Owner.Creature.Side || combatState.RoundNumber > 1)
-        {
-            await PowerCmd.Apply<ThornsPower>(Owner.Creature, 1, Owner.Creature, null);
-            return;
-        }
+        if (side != friedWing.Owner.Creature.Side) return;
 
-        // 向3pile各添加一张
-        List<PileType> targetPiles = [PileType.Hand, PileType.Draw, PileType.Exhaust];
+        await PowerCmd.Apply<ThornsPower>(Owner.Creature, 1, Owner.Creature, null);
+        friedWing.Flash();
+        if (combatState.RoundNumber > 1) return;
+
+        // 向2pile各添加一张
+        List<PileType> targetPiles = [PileType.Hand, PileType.Draw];
         foreach (PileType targetPile in targetPiles)
         {
             var feather = combatState.CreateCard<FirewoodFeather>(Owner);
             CardCmd.Upgrade(feather);
             await CardPileCmd.AddGeneratedCardToCombat(feather, targetPile, true);
         }
+    }
 
-        friedWing.Flash();
+    public override Task AfterRoomEntered(AbstractRoom room)
+    {
+        if (!(room is CombatRoom))
+        {
+            return Task.CompletedTask;
+        }
+
+        base.Status = RelicStatus.Active;
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterCombatEnd(CombatRoom _)
+    {
+        base.Status = RelicStatus.Normal;
+        return Task.CompletedTask;
     }
 }

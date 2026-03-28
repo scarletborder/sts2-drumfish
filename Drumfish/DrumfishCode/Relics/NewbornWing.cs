@@ -28,8 +28,8 @@ public class NewbornWing : DrumfishRelic
         if (side != newbornWing.Owner.Creature.Side || combatState.RoundNumber > 1)
             return;
 
-        // 向3pile各添加一张
-        List<PileType> targetPiles = [PileType.Hand, PileType.Draw, PileType.Exhaust];
+        // 向2pile各添加一张
+        List<PileType> targetPiles = [PileType.Hand, PileType.Draw];
         foreach (PileType targetPile in targetPiles)
         {
             var feather = combatState.CreateCard<FirewoodFeather>(Owner);
