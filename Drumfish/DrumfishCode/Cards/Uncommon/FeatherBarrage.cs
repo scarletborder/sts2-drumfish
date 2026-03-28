@@ -32,11 +32,16 @@ public sealed class FeatherBarrage() : DrumfishCard(2, CardType.Attack, CardRari
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        // ==========================================
+        // 1. 修复优先级 Bug，确保先判定 null 再和基础次数相加
+        // ==========================================
+        int repeatCount = DynamicVars.Repeat.IntValue;
+        int thornsAmount = (int)(Owner.Creature.GetPower<ThornsPower>()?.Amount ?? 0m);
+
         await DamageCmd.Attack(DynamicVars.Damage.IntValue)
-            .WithHitCount((int)((DynamicVars.Repeat.IntValue) + Owner.Creature.GetPower<ThornsPower>()?.Amount ?? 0m))
+            .WithHitCount(repeatCount + thornsAmount) // 基础次数 + 荆棘提供的额外次数
             .FromCard(this)
             .TargetingRandomOpponents(base.CombatState)
-            .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
         // ==========================================

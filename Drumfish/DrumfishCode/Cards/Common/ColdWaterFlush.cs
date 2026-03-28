@@ -13,11 +13,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Drumfish.DrumfishCode.Cards.Common;
 
-
 [Pool(typeof(DrumfishCardPool))]
 public class ColdWaterFlush() : DrumfishCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new DamageVar(3, ValueProp.Move),
+        new RepeatVar(2),
+    ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<HeatyStatusPower>()];
 
@@ -26,7 +29,7 @@ public class ColdWaterFlush() : DrumfishCard(1, CardType.Attack, CardRarity.Comm
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
         await HeatyCmd.Exit(choiceContext, play.Card.Owner);
-        await CommonActions.CardAttack(this, play.Target, 2).Execute(choiceContext);
+        await CommonActions.CardAttack(this, play.Target, DynamicVars.Repeat.IntValue).Execute(choiceContext);
     }
 
     protected override void OnUpgrade()

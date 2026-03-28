@@ -1,0 +1,8 @@
+{
+  "DRUMFISH-NEWBORN_WING.description": "战斗第一回合开始时，分别将一张[gold]薪生之羽[/gold]添加到抽牌堆，手牌中",
+  "DRUMFISH-NEWBORN_WING.flavor": "",
+  "DRUMFISH-NEWBORN_WING.title": "NewbornWing",
+  "DRUMFISH-FRIED_WING.description": "战斗第一回合开始时，分别将一张[gold]薪生之羽+[/gold]添加到抽牌堆，手牌中。\n回合开始时，获得1层[gold]荆棘[/gold]",
+  "DRUMFISH-FRIED_WING.flavor": "",
+  "DRUMFISH-FRIED_WING.title": "FriedWing"
+}
