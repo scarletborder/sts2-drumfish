@@ -42,7 +42,7 @@ public class Anneal() : DrumfishCard(0, CardType.Skill, CardRarity.Basic, Target
 
     protected override void OnUpgrade()
     {
-        DynamicVars[FeedfireVar.Key].UpgradeValueBy(1m);
+        DynamicVars.Block.UpgradeValueBy(2);
     }
 
     // public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();

@@ -45,7 +45,7 @@ public class PraiseFishPower : DrumfishPower
         // Create a clone of the exhausted card and add it to draw pile
         var cardCloneModel = card.CreateClone();
         CardCmd.PreviewCardPileAdd(
-            await CardPileCmd.AddGeneratedCardToCombat(cardCloneModel, PileType.Discard, addedByPlayer: true),
+            await CardPileCmd.AddGeneratedCardToCombat(cardCloneModel, PileType.Draw, addedByPlayer: true),
             2.2f);
     }
 }

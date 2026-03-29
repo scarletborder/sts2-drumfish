@@ -23,7 +23,7 @@ public class FeatherStrikePower : TemporaryThornsPower
 }
 
 [Pool(typeof(DrumfishCardPool))]
-public class FeatherStrike() : DrumfishCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class FeatherStrike() : DrumfishCard(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
     protected override IEnumerable<DynamicVar> CanonicalVars =>

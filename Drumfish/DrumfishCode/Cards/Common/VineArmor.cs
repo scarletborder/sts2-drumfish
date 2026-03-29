@@ -48,6 +48,7 @@ public class VineArmor() : DrumfishCard(2, CardType.Skill, CardRarity.Common, Ta
     protected override void OnUpgrade()
     {
         DynamicVars[FeedfireVar.Key].UpgradeValueBy(1m);
-        DynamicVars["VineVar"].UpgradeValueBy(1m);
+        DynamicVars["VineVar"].UpgradeValueBy(2m);
+        DynamicVars.Block.UpgradeValueBy(2);
     }
 }

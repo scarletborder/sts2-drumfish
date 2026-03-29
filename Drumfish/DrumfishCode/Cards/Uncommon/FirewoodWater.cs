@@ -16,7 +16,7 @@ public class FirewoodWater() : DrumfishCard(2, CardType.Skill, CardRarity.Uncomm
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(10m, ValueProp.Move),
-        new CardsVar(3),
+        new CardsVar(2),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -24,5 +24,11 @@ public class FirewoodWater() : DrumfishCard(2, CardType.Skill, CardRarity.Uncomm
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
         await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
         await PowerCmd.Apply<BurnoutPower>(Owner.Creature, 1, Owner.Creature, cardPlay.Card);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Block.UpgradeValueBy(4m);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

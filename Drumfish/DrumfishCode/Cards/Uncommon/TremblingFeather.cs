@@ -19,7 +19,7 @@ public class TremblingFeather() : DrumfishCard(2, CardType.Power, CardRarity.Unc
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ThornsPower>(4m),
+        new PowerVar<ThornsPower>(5m),
         new FeedfireVar(1m),
     ];
 
@@ -35,6 +35,6 @@ public class TremblingFeather() : DrumfishCard(2, CardType.Power, CardRarity.Unc
 
     protected override void OnUpgrade()
     {
-       DynamicVars["ThornsPower"].UpgradeValueBy(2m);
+       DynamicVars["ThornsPower"].UpgradeValueBy(3m);
     }
 }

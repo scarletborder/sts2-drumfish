@@ -13,7 +13,7 @@ namespace Drumfish.DrumfishCode.Cards.Uncommon;
 
 
 [Pool(typeof(DrumfishCardPool))]
-public class CarryWheat() : DrumfishCard(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class CarryWheat() : DrumfishCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override bool GainsBlock => true;
 

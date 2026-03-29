@@ -32,7 +32,10 @@ public class DamaiNet() : DrumfishCard(2, CardType.Attack, CardRarity.Common, Ta
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
         // 对所有敌人造成伤害
-        await CommonActions.CardAttack(play.Card, play,DynamicVars.Damage.IntValue).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this)
+            .TargetingAllOpponents(CombatState)
+            .Execute(choiceContext);
 
         // 触发 加薪
         if (play.Card.CombatState != null)

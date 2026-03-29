@@ -21,7 +21,7 @@ public class SiphonStrike() : DrumfishCard(2, CardType.Attack, CardRarity.Common
 {
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [
-      new DamageVar(9, ValueProp.Move),
+      new DamageVar(11, ValueProp.Move),
         new FeedfireVar(1m),
         new PowerVar<WeakPower>(2m),
     ];
@@ -35,7 +35,7 @@ public class SiphonStrike() : DrumfishCard(2, CardType.Attack, CardRarity.Common
 
   protected override void OnUpgrade()
   {
-    DynamicVars.Damage.UpgradeValueBy(3m);
+    DynamicVars.Damage.UpgradeValueBy(4m);
     DynamicVars.Weak.UpgradeValueBy(1m);
   }
 }

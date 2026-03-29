@@ -41,11 +41,8 @@ public class ReturnToAshes() : DrumfishCard(1, CardType.Attack, CardRarity.Rare,
             .Execute(choiceContext);
         if (shouldTriggerFatal && attackCommand.Results.Any((DamageResult r) => r.WasTargetKilled))
         {
-            var results = new List<CardPileAddResult>();
-            var cardCopy = cardPlay.Card.CreateClone();
-            results.Add(await CardPileCmd.Add(Owner.RunState.CreateCard(cardCopy, Owner), PileType.Deck));
-            CardCmd.PreviewCardPileAdd((IReadOnlyList<CardPileAddResult>)results, 1f);
-            results = null;
+            CardModel cardClone = base.Owner.RunState.CloneCard(cardPlay.Card);
+            CardCmd.PreviewCardPileAdd([(await CardPileCmd.Add(cardClone, PileType.Deck))], 0.8f);
         }
     }
 

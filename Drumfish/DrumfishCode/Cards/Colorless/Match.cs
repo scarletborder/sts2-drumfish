@@ -32,6 +32,18 @@ public sealed class Match() : CustomCardModel(1, CardType.Skill, CardRarity.Toke
         await HeatyCmd.Enter(choiceContext, Owner, cardPlay.Card);
     }
 
+    public override async Task AfterCardRetained(CardModel card)
+    {
+        if (card == this)
+        {
+            var currentCost = EnergyCost.GetWithModifiers(CostModifiers.Local);
+            // Reduce ONLY this card's cost (not all match copies!)
+            if (currentCost > 0) EnergyCost.SetThisCombat(currentCost - 1);
+        }
+
+        await Task.CompletedTask;
+    }
+
     protected override void OnUpgrade()
     {
         DynamicVars[FeedfireVar.Key].UpgradeValueBy(1m);

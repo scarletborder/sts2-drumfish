@@ -36,7 +36,7 @@ public class Yuyuko() : DrumfishCard(0, CardType.Attack, CardRarity.Rare, Target
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         // damage is 8 per X
-        new DynamicVar("DamagePerX", 8m),
+        new DamageVar(8m, ValueProp.Move)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
