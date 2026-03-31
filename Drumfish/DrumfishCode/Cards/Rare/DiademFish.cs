@@ -9,13 +9,14 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace Drumfish.DrumfishCode.Cards.Rare;
 
-public class JunYuPower : DrumfishPower
+public class DiademFishPower : DrumfishPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -49,6 +50,11 @@ public class JunYuPower : DrumfishPower
 [Pool(typeof(DrumfishCardPool))]
 public class DiademFish() : DrumfishCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<HeatyStatusPower>(),
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new EnergyVar(1)
@@ -60,7 +66,7 @@ public class DiademFish() : DrumfishCard(1, CardType.Power, CardRarity.Rare, Tar
         await HeatyCmd.Exit(choiceContext, Owner);
 
         // Apply the power that grants energy when entering Heaty
-        await PowerCmd.Apply<JunYuPower>(Owner.Creature, DynamicVars.Energy.IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<DiademFishPower>(Owner.Creature, DynamicVars.Energy.IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()

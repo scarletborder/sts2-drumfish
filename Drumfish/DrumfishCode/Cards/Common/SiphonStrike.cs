@@ -38,4 +38,7 @@ public class SiphonStrike() : DrumfishCard(2, CardType.Attack, CardRarity.Common
     DynamicVars.Damage.UpgradeValueBy(4m);
     DynamicVars.Weak.UpgradeValueBy(1m);
   }
+  
+  public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
+
 }

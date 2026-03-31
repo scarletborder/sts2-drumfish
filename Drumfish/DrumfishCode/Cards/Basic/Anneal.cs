@@ -45,5 +45,5 @@ public class Anneal() : DrumfishCard(0, CardType.Skill, CardRarity.Basic, Target
         DynamicVars.Block.UpgradeValueBy(2);
     }
 
-    // public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
+    public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 }

@@ -1,6 +1,8 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Drumfish.DrumfishCode.Character;
 using Drumfish.DrumfishCode.Commands;
+using Drumfish.DrumfishCode.Extensions;
 using Drumfish.DrumfishCode.Keywords;
 using Drumfish.DrumfishCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -31,4 +33,6 @@ public class BurnoutPunch() : DrumfishCard(1, CardType.Attack, CardRarity.Common
     {
         DynamicVars.Damage.UpgradeValueBy(4m);
     }
+    
+    public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 }
