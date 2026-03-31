@@ -76,7 +76,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All"/>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.1" PrivateAssets="All" />
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.6" />
         <AdditionalFiles Include="Drumfish/localization/**/*.json"/>
     </ItemGroup>
@@ -100,9 +100,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="DrumfishCode\Cards\Rare\" />
+        <Folder Include="DrumfishCode\Cards\Ancient\" />
         <Folder Include="Drumfish\images\powers\big\"/>
         <Folder Include="Drumfish\images\relics\big\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="design.md" />
     </ItemGroup>
 
     <Target Name="CheckDependencyPaths">
