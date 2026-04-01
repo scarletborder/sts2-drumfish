@@ -5,6 +5,7 @@ using Drumfish.DrumfishCode.Character;
 using Drumfish.DrumfishCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Drumfish.DrumfishCode.Cards;
 
@@ -27,19 +28,19 @@ public abstract class DrumfishCard(int cost, CardType type, CardRarity rarity, T
     public override string PortraitPath => DefaultPortraitPath;
     public override string BetaPortraitPath => DefaultPortraitPath;
 
-    public virtual Task OnFeedfire(Player player, decimal amount)
+    public virtual Task OnFeedfire(PlayerChoiceContext choiceContext, Player player, decimal amount)
     {
         return Task.CompletedTask;
     }
 
     // Called when the player enters Heaty (上火)
-    public virtual Task OnHeatyEnter(Player player)
+    public virtual Task OnHeatyEnter(PlayerChoiceContext choiceContext, Player player)
     {
         return Task.CompletedTask;
     }
 
     // Called when the player exits Heaty (上火)
-    public virtual Task OnHeatyExit(Player player)
+    public virtual Task OnHeatyExit(PlayerChoiceContext choiceContext, Player player)
     {
         return Task.CompletedTask;
     }

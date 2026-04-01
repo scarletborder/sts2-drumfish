@@ -58,7 +58,7 @@ public class PhoenixStrikePower : DrumfishPower
         }
     }
 
-    private async Task OnFeedfire(Player player, decimal amount)
+    private async Task OnFeedfire(PlayerChoiceContext choiceContext, Player player, decimal amount)
     {
         if (triggerPlayer == null) return;
         if (player != triggerPlayer) return;

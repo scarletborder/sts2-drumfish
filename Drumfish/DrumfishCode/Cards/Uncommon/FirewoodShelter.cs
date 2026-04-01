@@ -51,7 +51,7 @@ public class FirewoodShelterPower : DrumfishPower
         FeedfireCmd.Feedfired -= OnFeedfire;
     }
 
-    private async Task OnFeedfire(Player player, decimal amount)
+    private async Task OnFeedfire(PlayerChoiceContext choiceContext, Player player, decimal amount)
     {
         if (player != Owner.Player)
             return;

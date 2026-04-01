@@ -15,7 +15,7 @@ public static class FeedfireCmd
      * 监听 加薪 事件，加薪时会invoke
      * 能力卡，记得在 OnRemove(移除效果) 和 OnCombatEnd 时候用 '-=' 移除监听
      */
-    public static event Func<Player, decimal, Task>? Feedfired;
+    public static event Func<PlayerChoiceContext, Player, decimal, Task>? Feedfired;
 
     public static async Task Execute(PlayerChoiceContext choiceContext, Player player, decimal amount, CombatState state)
     {
@@ -48,23 +48,23 @@ public static class FeedfireCmd
         }
 
         // 3. 广播给其他卡牌和遗物
-        await NotifyPowers(player, amount);
-        await NotifyCards(player, amount);
+        await NotifyPowers(choiceContext, player, amount);
+        await NotifyCards(choiceContext, player, amount);
     }
 
-    private static async Task NotifyPowers(Player player, decimal amount)
+    private static async Task NotifyPowers(PlayerChoiceContext choiceContext, Player player, decimal amount)
     {
-        if (Feedfired != null) await Feedfired.Invoke(player, amount);
+        if (Feedfired != null) await Feedfired.Invoke(choiceContext, player, amount);
     }
 
-    private static async Task NotifyCards(Player? player, decimal amount)
+    private static async Task NotifyCards(PlayerChoiceContext choiceContext, Player? player, decimal amount)
     {
         if (player?.PlayerCombatState?.AllPiles != null)
             foreach (var pile in player.PlayerCombatState?.AllPiles!)
             {
                 var drumfishCards = pile.Cards.OfType<DrumfishCard>().ToList();
 
-                foreach (var card in drumfishCards) await card.OnFeedfire(player, amount);
+                foreach (var card in drumfishCards) await card.OnFeedfire(choiceContext, player, amount);
             }
     }
 }

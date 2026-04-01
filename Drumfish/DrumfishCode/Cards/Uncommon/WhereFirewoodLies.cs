@@ -38,11 +38,11 @@ public class WhereFirewoodLiesPower : DrumfishPower
         HeatyCmd.HeatyEntered -= OnHeatyEntered;
     }
 
-    private async Task OnHeatyEntered(Player player)
+    private async Task OnHeatyEntered(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player) return;
         Flash();
-        await CardPileCmd.Draw(new BlockingPlayerChoiceContext(), base.Amount, base.Owner.Player);
+        await CardPileCmd.Draw(choiceContext, base.Amount, base.Owner.Player);
     }
 }
 

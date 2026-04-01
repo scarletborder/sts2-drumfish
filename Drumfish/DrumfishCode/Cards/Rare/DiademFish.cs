@@ -39,7 +39,7 @@ public class DiademFishPower : DrumfishPower
         HeatyCmd.HeatyEntered -= OnHeatyEntered;
     }
 
-    private async Task OnHeatyEntered(Player player)
+    private async Task OnHeatyEntered(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player) return;
 

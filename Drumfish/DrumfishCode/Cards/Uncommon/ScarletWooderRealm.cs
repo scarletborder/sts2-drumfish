@@ -41,7 +41,7 @@ public class ScarletWooderRealmPower : DrumfishPower
         FeedfireCmd.Feedfired -= OnFeedfire;
     }
 
-    private async Task OnFeedfire(Player player, decimal amount)
+    private async Task OnFeedfire(PlayerChoiceContext choiceContext, Player player, decimal amount)
     {
         if (player != Owner.Player) return;
 
@@ -50,7 +50,7 @@ public class ScarletWooderRealmPower : DrumfishPower
         SfxCmd.Play("slash_attack.mp3");
 
         // Use the configured Amount of this power as damage (set when applied by the card)
-        await CreatureCmd.Damage(null, base.CombatState.HittableEnemies, base.Amount, ValueProp.Unpowered, base.Owner,
+        await CreatureCmd.Damage(choiceContext, base.CombatState.HittableEnemies, base.Amount, ValueProp.Unpowered, base.Owner,
             null);
     }
 }
