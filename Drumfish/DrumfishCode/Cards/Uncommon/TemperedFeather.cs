@@ -26,7 +26,7 @@ public class TemperedFeather() : DrumfishCard(2, CardType.Skill, CardRarity.Unco
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ThornsPower>(6m),
+        new PowerVar<ThornsPower>(8m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -47,6 +47,6 @@ public class TemperedFeather() : DrumfishCard(2, CardType.Skill, CardRarity.Unco
 
     protected override void OnUpgrade()
     {
-        DynamicVars["ThornsPower"].UpgradeValueBy(3m);
+        DynamicVars["ThornsPower"].UpgradeValueBy(4m);
     }
 }

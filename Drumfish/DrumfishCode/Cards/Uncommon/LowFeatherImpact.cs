@@ -17,7 +17,7 @@ public class LowFeatherImpact() : DrumfishCard(1, CardType.Attack, CardRarity.Un
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ThornsPower>(2m),
+        new PowerVar<ThornsPower>(4m),
         new DamageVar(5m,ValueProp.Move),
     ];
 
@@ -30,6 +30,6 @@ public class LowFeatherImpact() : DrumfishCard(1, CardType.Attack, CardRarity.Un
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
-        DynamicVars["ThornsPower"].UpgradeValueBy(1m);
+        DynamicVars["ThornsPower"].UpgradeValueBy(2m);
     }
 }

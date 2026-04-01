@@ -29,7 +29,7 @@ public class FeatherStrike() : DrumfishCard(0, CardType.Attack, CardRarity.Commo
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(5, ValueProp.Move),
-        new PowerVar<ThornsPower>(1m)
+        new PowerVar<ThornsPower>(4m)
     ];
 
     public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
@@ -46,6 +46,6 @@ public class FeatherStrike() : DrumfishCard(0, CardType.Attack, CardRarity.Commo
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(2m);
-        DynamicVars["ThornsPower"].UpgradeValueBy(1m);
+        DynamicVars["ThornsPower"].UpgradeValueBy(2m);
     }
 }

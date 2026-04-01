@@ -24,7 +24,7 @@ public sealed class FirewoodFeather() : CustomCardModel(0, CardType.Skill, CardR
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new FeedfireVar(1),
-        new PowerVar<ThornsPower>(1m),
+        new PowerVar<ThornsPower>(3m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

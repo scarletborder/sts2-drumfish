@@ -22,7 +22,7 @@ public sealed class ScaldingFeather() : CustomCardModel(1, CardType.Skill, CardR
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new FeedfireVar(1),
-        new PowerVar<ThornsPower>(3m),
+        new PowerVar<ThornsPower>(6m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -37,7 +37,6 @@ public sealed class ScaldingFeather() : CustomCardModel(1, CardType.Skill, CardR
 
     protected override void OnUpgrade()
     {
-        DynamicVars["ThornsPower"].UpgradeValueBy(1m);
         DynamicVars[FeedfireVar.Key].UpgradeValueBy(1m);
     }
 }

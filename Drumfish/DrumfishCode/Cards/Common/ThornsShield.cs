@@ -30,8 +30,8 @@ public sealed class ThornsShield() : CustomCardModel(1, CardType.Skill, CardRari
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(6, ValueProp.Move),
-        new PowerVar<ThornsPower>(1m),
+        new BlockVar(8, ValueProp.Move),
+        new PowerVar<ThornsPower>(2m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -46,7 +46,7 @@ public sealed class ThornsShield() : CustomCardModel(1, CardType.Skill, CardRari
 
     protected override void OnUpgrade()
     {
-        DynamicVars["ThornsPower"].UpgradeValueBy(2m);
-        DynamicVars.Block.UpgradeValueBy(2m);
+        DynamicVars["ThornsPower"].UpgradeValueBy(1m);
+        DynamicVars.Block.UpgradeValueBy(4m);
     }
 }

@@ -17,7 +17,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Drumfish.DrumfishCode.Cards.Rare;
 
 [Pool(typeof(DrumfishCardPool))]
-public class SecondFeather() : DrumfishCard(4, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class SecondFeather() : DrumfishCard(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
