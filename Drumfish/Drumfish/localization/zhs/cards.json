@@ -29,6 +29,8 @@
   "DRUMFISH-BURNOUT_PUNCH.title": "燃尽一拳",
   "DRUMFISH-DAMAI_NET.description": "对所有敌人造成{Damage:diff()}点伤害。\n[gold]加薪[/gold]{Feedfire:diff()}。",
   "DRUMFISH-DAMAI_NET.title": "大麦网",
+  "DRUMFISH-FEATHERED_SNAKE_BITE.description": "造成{Damage:diff()}点伤害。将{Cards:diff()}张[gold]薪生之羽[/gold]加入手牌。",
+  "DRUMFISH-FEATHERED_SNAKE_BITE.title": "羽蛇噬咬",
   "DRUMFISH-GUARD.description": "获得等同于当前[gold]荆棘[/gold]层数的[gold]临时荆棘[/gold]。除你之外所有队友获得1层[gold]无实体[/gold]。本回合你受到的伤害翻倍。",
   "DRUMFISH-GUARD.title": "护卫",
   "DRUMFISH-COOLANT.description": "获得[gold]能量[/gold]。退出[gold]上火[/gold]状态。。",

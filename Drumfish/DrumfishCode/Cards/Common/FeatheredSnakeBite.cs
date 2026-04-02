@@ -1,4 +1,4 @@
-using BaseLib.Cards.Variables;
+﻿using BaseLib.Cards.Variables;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Drumfish.DrumfishCode.Cards.Colorless;
@@ -16,20 +16,20 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Drumfish.DrumfishCode.Cards.Common;
 
+
 [Pool(typeof(DrumfishCardPool))]
-public class IllegalFirewoodDemand() : DrumfishCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class FeatheredSnakeBite() : DrumfishCard(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(7, ValueProp.Move),
-        new CardsVar(1),
-    ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromCard<Match>(),
+        new CardsVar(2),
     ];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromCard<FirewoodFeather>(),
+    ];
 
     public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 
@@ -39,16 +39,15 @@ public class IllegalFirewoodDemand() : DrumfishCard(1, CardType.Attack, CardRari
 
         for (var i = 0; i < DynamicVars.Cards.IntValue; i++)
         {
-            var match = base.CombatState?.CreateCard<Match>(Owner);
-            if (match == null) continue;
-            await CardPileCmd.AddGeneratedCardToCombat(match, PileType.Hand, true);
+            var featherCard = base.CombatState?.CreateCard<FirewoodFeather>(Owner);
+            if (featherCard == null) continue;
+            await CardPileCmd.AddGeneratedCardToCombat(featherCard, PileType.Hand, true);
             await Cmd.Wait(0.1f);
         }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
-        DynamicVars.Cards.UpgradeValueBy(1m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }
